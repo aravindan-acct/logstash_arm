@@ -10,6 +10,20 @@
         },
         "omsworkspaceprimarykey":{
             "type": "string"
+        },
+        "_artifactsLocation": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "The base URI where artifacts required by this template are located"
+        }
+        },
+        "_artifactsLocationSasToken": {
+        "type": "secureString",
+        "defaultValue": "",
+        "metadata": {
+            "description": "The sasToken required to access _artifactsLocation.  When the template is deployed using the accompanying scripts, a sasToken will be automatically generated"
+        }
         }
     },
     "functions": [],
@@ -221,7 +235,7 @@
                 "autoUpgradeMinorVersion": true,
                 "settings": {
                     "fileUris": [
-                        "https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/scripts/logstash_installation.sh"
+                        "[concat(parameters('_artifactsLocation'),'logstash_installation.sh',parameters('_artifactsLocationSasToken'))]"
                     ]
                 },
                 "protectedSettings": {

@@ -10,6 +10,9 @@
         },
         "omsworkspaceprimarykey": {
             "value": "change-me" 
+        },
+        "_artifactsLocation": {
+            "value": "https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/scripts/"
         }
     }
 }
