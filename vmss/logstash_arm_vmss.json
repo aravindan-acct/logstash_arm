@@ -168,10 +168,10 @@
               "frontendIPConfiguration": {
                 "id": "[variables('frontEndIPConfigID')]"
               },
-              "protocol": "Tcp",
+              "protocol": "Udp",
               "frontendPortRangeStart": 9000,
               "frontendPortRangeEnd": 9120,
-              "backendPort": 9000
+              "backendPort": 1514
             }
           }
         ]
