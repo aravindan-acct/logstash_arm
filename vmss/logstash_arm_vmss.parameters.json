@@ -9,7 +9,7 @@
             "value": "Standard_D2_v3"
         },
         "vmssName": {
-            "value": "cudalsvmss"
+            "value": "cudavmss"
         },
         "instanceCount": {
             "value": 1
