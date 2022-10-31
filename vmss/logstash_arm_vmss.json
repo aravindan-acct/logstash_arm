@@ -265,7 +265,7 @@
                     "fileUris": [
                       "[concat(parameters('_artifactsLocation'),'logstash_installation.sh',parameters('_artifactsLocationSasToken'))]"
                     ],
-                    "commandToExecute": "bash installserver.sh"
+                    "commandToExecute": "bash logstash_installation.sh"
                   }
                 }
               }
