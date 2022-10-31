@@ -19,6 +19,6 @@ steps:
     resourceGroupName: 'aralogstash'
     location: 'South Central US'
     templateLocation: 'URL of the file'
-    csmFileLink: 'https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/logstash_arm.json'
-    csmParametersFileLink: 'https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/logstash_arm.parameters.json'
+    csmFileLink: 'https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/vmss/logstash_arm_vmss.json'
+    csmParametersFileLink: 'https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/vmss/logstash_arm_vmss.parameters.json'
     deploymentMode: 'Incremental'
