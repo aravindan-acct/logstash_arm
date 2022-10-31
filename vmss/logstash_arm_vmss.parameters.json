@@ -11,6 +11,12 @@
         "vmssName": {
             "value": "cudavmss"
         },
+        "omsworkspaceID": {
+            "value": "change-me"
+        },
+        "omsworkspaceprimarykey": {
+            "value": "change-me" 
+        },
         "instanceCount": {
             "value": 1
         },

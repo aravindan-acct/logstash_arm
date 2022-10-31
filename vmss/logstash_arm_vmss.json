@@ -16,6 +16,12 @@
         "description": "Size of VMs in the VM Scale Set."
       }
     },
+    "omsworkspaceID": {
+            "type": "string"
+        },
+    "omsworkspaceprimarykey":{
+            "type": "string"
+        },
     "vmssName": {
       "type": "string",
       "metadata": {
@@ -92,6 +98,11 @@
       "version": "latest"
     },
     "imageReference": "[variables('osType')]",
+    "userData": {
+            "OMSWorkspaceID": "[parameters('omsworkspaceID')]",
+            "OMSWorkspaceKey": "[parameters('omsworkspaceprimarykey')]"
+        },
+    "customData": "[string(variables('userData'))]",
     "linuxConfiguration": {
       "disablePasswordAuthentication": true,
       "ssh": {
@@ -217,6 +228,7 @@
             "computerNamePrefix": "[parameters('vmssName')]",
             "adminUsername": "[parameters('adminUsername')]",
             "adminPassword": "[parameters('adminPasswordOrKey')]",
+            "customData" : "[base64(variables('customData'))]",
             "linuxConfiguration": "[if(equals(parameters('authenticationType'), 'password'), json('null'), variables('linuxConfiguration'))]"
           },
           "networkProfile": {
