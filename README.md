@@ -13,9 +13,11 @@
 This repo can be used to deploy a logstash server that can act as a mediator to send logs from one or more WAAS services to Log Analytics and Microsoft Sentinel.
 
 ## Deploying the Logstash Server
-The [logstash](https://www.elastic.co/guide/en/logstash/current/introduction.html) server can be deployed using the [ARM template](https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/logstash_arm.json) in this repo. 
+The [logstash](https://www.elastic.co/guide/en/logstash/current/introduction.html) server can be deployed using [ARM template for single instance deployment](https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/logstash_arm.json) or [ARM template for virtual machine scale set deployment, VMSS](https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/vmss/logstash_arm_vmss.json).
 
-Most of the logstash server's settings are already configured. The only inputs for the ARM template deployment are the logstash server `password`, the log analytics `workspace id` and log analytics `workspace key`, which can be updated in the ARM template's [parameters file](https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/logstash_arm.parameters.json). 
+Most of the logstash server's settings are already configured. The only inputs for the ARM template deployment are the logstash server `password`, the log analytics `workspace id` and log analytics `workspace key`, which can be updated in the ARM template's [parameters file](https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/logstash_arm.parameters.json).
+
+For VMSS deployment, please use [VMSS parameters file](https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/vmss/logstash_arm_vmss.parameters.json).
 
 The Logstash configuration can be found here: [Logstash Configuration File](https://github.com/aravindan-acct/logstash_arm/blob/main/scripts/waf.conf)
 
@@ -49,7 +51,7 @@ New-AzResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName Example
 
 ### WAAS Configuration
 1. Add the export logs component
-2. Add the syslog server and set the port as 1514 (UDP)
+2. If the logstash server is a single instance deployment, add the syslog server and set the port as 1514 (UDP). If logstash server is a VMSS deployment, the port should be 50000 (udp).
 3. Log format configuration
 
     3.a For the `Syslog Header` field, select `ArcSight Log Header`. The header value format will be auto set as follows:
@@ -91,6 +93,10 @@ The processed logs can be found in a custom log table called `WAAS_MS_Sentinel` 
 
 ### Notes about deployment 
 
-1. The ARM template has the following NSG rules: 
+1. The ARM template for single instance deployment has the following NSG rules for inbound traffic: 
     - Syslog port: UDP 1514
+    - SSH Port : TCP 22 
+
+2. The ARM template for VMSS deployment has the following inbound NAT rules: 
+    - Syslog port: UDP 50000
     - SSH Port : TCP 22 
