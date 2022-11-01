@@ -3,16 +3,22 @@
 ## Table of contents
 1. [Introduction](#introduction)
 2. [Deploying the Logstash Server](#deploying-the-logstash-server)
-    1. [Deployment Pre-Requisites](#deployment-pre-requisites)
-    2. [Deploying the ARM Template](#deploying-the-arm-template)
-    3. [WAAS Configuration](#waas-configuration)
-    4. [Logstash Server Troubleshooting](#logstash-server-troubleshooting)
-    5. [Log events in Azure Log Analytics / Microsoft Sentinel](#log-events-in-azure-log-analytics--microsoft-sentinel)
-    6. [Notes about deployment](#notes-about-deployment)
+    1. [ARM Templates](#arm-templates)
+    2. [Deployment Parameters](#deployment-parameters)
+    3. [Logstash Configuration](#logstash-configuration)
+    4. [Deployment Pre-Requisites](#deployment-pre-requisites)
+    5. [Deploying the ARM Template](#deploying-the-arm-template)
+    6. [WAAS Configuration](#waas-configuration)
+    7. [Logstash Server Troubleshooting](#logstash-server-troubleshooting)
+    8. [Log events in Azure Log Analytics / Microsoft Sentinel](#log-events-in-azure-log-analytics--microsoft-sentinel)
+    9. [Notes about deployment](#notes-about-deployment)
 ## Introduction
 This repo can be used to deploy a logstash server that can act as a mediator to send logs from one or more WAAS services to Log Analytics and Microsoft Sentinel.
 
 ## Deploying the Logstash Server
+
+### ARM Templates
+
 The [logstash](https://www.elastic.co/guide/en/logstash/current/introduction.html) server can be deployed using:
 -   [ARM template for single instance deployment](https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/logstash_arm.json) - This option is suited for environments where there is low to moderate log events traffic.
 
@@ -20,7 +26,7 @@ OR
 
 -   [ARM template for virtual machine scale set deployment, VMSS](https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/vmss/logstash_arm_vmss.json) - This option is suited for environments where log events traffic is very high and a single instance cannot handle the load.
 
-### Deployment parameters
+### Deployment Parameters
 
 Most of the logstash server's settings are already configured. 
 
@@ -28,7 +34,7 @@ The only inputs for the ARM template for single instance deployment are the logs
 
 For VMSS deployment, please use [VMSS parameters file](https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/vmss/logstash_arm_vmss.parameters.json).
 
-### Logstash configuration
+### Logstash Configuration
 
 The Logstash configuration can be found here: [Logstash Configuration File](https://github.com/aravindan-acct/logstash_arm/blob/main/scripts/waf.conf). 
 
