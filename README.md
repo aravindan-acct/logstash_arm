@@ -14,9 +14,11 @@ This repo can be used to deploy a logstash server that can act as a mediator to 
 
 ## Deploying the Logstash Server
 The [logstash](https://www.elastic.co/guide/en/logstash/current/introduction.html) server can be deployed using:
-1. [ARM template for single instance deployment](https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/logstash_arm.json) - This option is suited for environments where there is low to moderate log events traffic.
-or 
-2. [ARM template for virtual machine scale set deployment, VMSS](https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/vmss/logstash_arm_vmss.json) - This option is suited for environments where log events traffic is very high and a single instance cannot handle the load.
+-   [ARM template for single instance deployment](https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/logstash_arm.json) - This option is suited for environments where there is low to moderate log events traffic.
+
+OR
+
+-   [ARM template for virtual machine scale set deployment, VMSS](https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/vmss/logstash_arm_vmss.json) - This option is suited for environments where log events traffic is very high and a single instance cannot handle the load.
 
 ### Deployment parameters
 
