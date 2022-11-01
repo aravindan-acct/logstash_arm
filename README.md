@@ -13,13 +13,22 @@
 This repo can be used to deploy a logstash server that can act as a mediator to send logs from one or more WAAS services to Log Analytics and Microsoft Sentinel.
 
 ## Deploying the Logstash Server
-The [logstash](https://www.elastic.co/guide/en/logstash/current/introduction.html) server can be deployed using [ARM template for single instance deployment](https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/logstash_arm.json) or [ARM template for virtual machine scale set deployment, VMSS](https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/vmss/logstash_arm_vmss.json).
+The [logstash](https://www.elastic.co/guide/en/logstash/current/introduction.html) server can be deployed using:
+1. [ARM template for single instance deployment](https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/logstash_arm.json) - This option is suited for environments where there is low to moderate log events traffic.
+or 
+2. [ARM template for virtual machine scale set deployment, VMSS](https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/vmss/logstash_arm_vmss.json) - This option is suited for environments where log events traffic is very high and a single instance cannot handle the load.
 
-Most of the logstash server's settings are already configured. The only inputs for the ARM template deployment are the logstash server `password`, the log analytics `workspace id` and log analytics `workspace key`, which can be updated in the ARM template's [parameters file](https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/logstash_arm.parameters.json).
+### Deployment parameters
+
+Most of the logstash server's settings are already configured. 
+
+The only inputs for the ARM template for single instance deployment are the logstash server `password`, the log analytics `workspace id` and log analytics `workspace key`, which can be updated in the ARM template's [parameters file](https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/logstash_arm.parameters.json).
 
 For VMSS deployment, please use [VMSS parameters file](https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/vmss/logstash_arm_vmss.parameters.json).
 
-The Logstash configuration can be found here: [Logstash Configuration File](https://github.com/aravindan-acct/logstash_arm/blob/main/scripts/waf.conf)
+### Logstash configuration
+
+The Logstash configuration can be found here: [Logstash Configuration File](https://github.com/aravindan-acct/logstash_arm/blob/main/scripts/waf.conf). 
 
 ### Deployment Pre-Requisites
 
@@ -42,12 +51,21 @@ New-AzResourceGroup -Name ExampleResourceGroup -Location "Central US"
 
 2. Deploy the template
 
+`Single Instance Deployment`
+
 ```powershell
 New-AzResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup `
   -TemplateUri https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/logstash_arm.json `
   -TemplateParameterUri https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/logstash_arm.parameters.json
 ```
 
+`Virtual Machine Scale Set Deployment`
+
+```powershell
+New-AzResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup `
+  -TemplateUri https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/vmss/logstash_arm_vmss.json `
+  -TemplateParameterUri https://raw.githubusercontent.com/aravindan-acct/logstash_arm/main/vmss/logstash_arm_vmss.parameters.json
+```
 
 ### WAAS Configuration
 1. Add the export logs component
