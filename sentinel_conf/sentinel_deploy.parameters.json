@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "templateSpecName": {
+            "value": "Microsoft Sentinel Workbook for Barracuda WAAS"
+        },
+        "templateSpecVersionName": {
+            "value": "0.1"
+        },
+        "location": {
+            "value": "" // TODO: Fill in parameter value
+        },
+        "workbookDisplayName": {
+            "value": "" // TODO: Fill in parameter value
+        },
+        "workbookId": {
+            "value": "" // TODO: Fill in parameter value
+        },
+        "workbookSourceId": {
+            "value": "" // TODO: Fill in parameter value
+        },
+        "workbookType": {
+            "value": "" // TODO: Fill in parameter value
+        }
+    }
+}
